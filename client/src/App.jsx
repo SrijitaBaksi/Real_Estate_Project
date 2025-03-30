@@ -12,6 +12,8 @@ import Register from "./routes/register/Register.jsx";
 import ProfileUpdatepage from "./routes/profileUpdatePage/ProfileUpdatePage.jsx"
 import NewPostPage from "./routes/newPostPage/NewPostPage.jsx"
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./routes/lib/loaders.js";
+import AboutUs from "./routes/aboutUs/AboutUs.jsx";
+import ContactUs from "./routes/contactUs/ContactUs.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -40,6 +42,14 @@ function App() {
         {
           path: "/register",
           element: <Register />,
+        },
+        {
+          path: "/about",
+          element: <AboutUs />,  
+        },
+        {
+          path: "/contact",
+          element: <ContactUs />,
         },
       ],
     },

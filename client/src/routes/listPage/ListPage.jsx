@@ -4,12 +4,14 @@ import { Await, useLoaderData } from "react-router-dom";
 import Filter from "../../components/filter/Filter";
 import Card from "../../components/card/Card";
 import Map from "../../components/map/Map.jsx";
+import Footer from "../../components/footer/Footer.jsx";
 
 function ListPage() {
   const data = useLoaderData(); // data contains a promise
   console.log(data.postResponse)
   return (
-    <div className="ListPage">
+    <>
+      <div className="ListPage">
       <div className="listContainer">
         <div className="wrapper">
           <Filter />
@@ -36,7 +38,10 @@ function ListPage() {
             </Await>
           </Suspense>
       </div>
+     
     </div>
+    </>
+    
   );
 }
 
