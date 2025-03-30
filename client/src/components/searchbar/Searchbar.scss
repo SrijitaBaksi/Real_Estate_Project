@@ -1,0 +1,99 @@
+
+@import "../../responsive.scss";
+.searchBar{
+    .type{
+
+       
+       button{
+        padding: 16px 36px;
+        border:1px solid #999;
+        cursor: pointer;
+        text-transform: capitalize;
+        border-bottom: none;
+
+        &.active{
+            background-color: black;
+            color:white;
+
+        }
+
+        &:first-child{
+            border-top-left-radius: 5px;
+            border-right: none;
+
+            
+        }
+        &:last-child{
+            border-top-right-radius: 5px;
+            border-left: none;
+        }
+       } 
+    }
+
+    form{
+        border: 1px solid #999;
+        display:flex;
+        justify-content: space-between;
+        height:64px;
+        gap:5px;
+
+        @include sm{
+            flex-direction: column;
+            border:none;
+        }
+
+        input{
+            border:none;
+            padding:0px 10px;
+            width:180px;
+
+            @include lg{
+                padding:0px 5px;
+
+                &:nth-child(2),&:nth-child(3){
+                    width:140px;
+                }
+            }
+            @include md{
+                width:200px;
+
+                &:nth-child(2),&:nth-child(3){
+                    width:200px;
+                }
+            }
+            @include sm{
+                width: auto;
+                padding:20px;
+                &:nth-child(2),&:nth-child(3){
+                    width:auto;
+                }
+                border:1px solid #999;
+
+            }
+        }
+
+        a{
+            flex: 1;
+            background-color: #fece51;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+      
+            button {
+              border: none;
+              cursor: pointer;
+              background-color: #fece51;
+              
+              @include sm{
+                padding: 30px;
+              }
+              
+              img {
+                
+                width: 30px;
+                height: 30px;
+              }
+            }
+          }
+        }
+      }
