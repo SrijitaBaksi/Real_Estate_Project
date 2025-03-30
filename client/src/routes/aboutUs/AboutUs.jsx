@@ -36,7 +36,7 @@ function AboutUs() {
 
       {/* Why Choose Us? */}
       <div className="section why-choose-us">
-        <h2>Why Choose Us?</h2>
+        <h2>What makes us different?</h2>
         <div className="features">
           <div className="feature">
             <img src="verified.png" alt="Verified Properties" />
