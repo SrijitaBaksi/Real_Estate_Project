@@ -14,6 +14,7 @@ import NewPostPage from "./routes/newPostPage/NewPostPage.jsx"
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./routes/lib/loaders.js";
 import AboutUs from "./routes/aboutUs/AboutUs.jsx";
 import ContactUs from "./routes/contactUs/ContactUs.jsx";
+import UpdatePostPage from "./routes/updatePost/UpdatePostPage.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -70,6 +71,10 @@ function App() {
           path: "/add",
           element: <NewPostPage/>, // new post page is protected
         },
+        {
+          path:"/update/:id",
+          element: <UpdatePostPage/>
+        }
       ],
     },
   ]);

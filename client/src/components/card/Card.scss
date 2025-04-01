@@ -97,6 +97,21 @@
             background-color: lightgray;
           }
         }
+        .updateButton {
+          background-color: teal;
+          color: white;
+          font-size: 0.9rem;
+          font-weight: bold;
+          border: none;
+          padding: 8px 12px;
+          cursor: pointer;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+
+          &:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+          }
+        }
       }
     }
   }

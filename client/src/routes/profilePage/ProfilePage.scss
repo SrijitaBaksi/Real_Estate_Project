@@ -37,8 +37,14 @@
         button{
           padding: 12px 24px;
           background-color: #fece51;
+          font-weight: bold;
           cursor: pointer;
           border: none;
+
+          &:hover{
+            background-color: #fac234;
+            transform: scale(1.05);
+          }
         }
       }
 
@@ -57,10 +63,17 @@
           width:100px;
           background-color: teal;
           border:none;
+          font-weight: bold;
           color:white;
           padding:10px 20px;
           cursor: pointer;
+
+          &:hover{
+            background-color: #0056b3;
+            transform: scale(1.05);
+          }
         }
+
 
         img{
           width: 40px;

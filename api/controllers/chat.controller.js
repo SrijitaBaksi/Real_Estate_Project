@@ -74,20 +74,26 @@ export const getChat=async(req,res)=>{
     }
 }
 
-export const addChat=async(req,res)=>{
-    const tokenUserId=req.userId;
-    try{
-        const newChat=await prisma.chat.create({
-            data:{
-                userIDs:[tokenUserId,req.body.receiverId]
-            }
-        })
-        res.status(200).json(newChat);
-    }catch(err){
-        console.log(err)
-        res.status(500).json({message:"failed to get chats"})
+export const addChat = async (req, res) => {
+    const tokenUserId = req.userId;
+    const { receiverId } = req.body; // Get receiverId from the request body
+
+    if (!receiverId) {
+        return res.status(400).json({ message: "Receiver ID is required" });
     }
-}
+
+    try {
+        const newChat = await prisma.chat.create({
+            data: {
+                userIDs: [tokenUserId, receiverId] // Ensure both user IDs are included
+            }
+        });
+        res.status(200).json(newChat);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Failed to create chat" });
+    }
+};
 
 export const readChat=async(req,res)=>{
     const tokenUserId=req.userId;

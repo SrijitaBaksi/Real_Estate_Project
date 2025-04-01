@@ -168,6 +168,7 @@ export const updatePost = async (req, res) => {
     try {
         const post = await prisma.post.findUnique({
             where: { id },
+            include: { postDetail: true }, // ✅ Include postDetail for checking
         });
 
         if (!post) {
@@ -180,7 +181,35 @@ export const updatePost = async (req, res) => {
 
         const updatedPost = await prisma.post.update({
             where: { id },
-            data: updateData,
+            data: {
+                title: updateData.title,
+                price: parseInt(updateData.price),
+                address: updateData.address,
+                city: updateData.city,
+                bedroom: parseInt(updateData.bedroom),
+                bathroom: parseInt(updateData.bathroom),
+                type: updateData.type,
+                property: updateData.property,
+                latitude: updateData.latitude,
+                longitude: updateData.longitude,
+                images: updateData.images,
+
+                // ✅ Update postDetail only if it exists
+                postDetail: post.postDetail
+                    ? {
+                        update: {
+                            desc: updateData.postDetail?.desc,
+                            utilities: updateData.postDetail?.utilities,
+                            pet: updateData.postDetail?.pet,
+                            income: updateData.postDetail?.income,
+                            size: parseInt(updateData.postDetail?.size),
+                            school: parseInt(updateData.postDetail?.school),
+                            bus: parseInt(updateData.postDetail?.bus),
+                            restaurant: parseInt(updateData.postDetail?.restaurant),
+                        },
+                    }
+                    : undefined, // If no postDetail, don't update
+            },
         });
 
         res.status(200).json(updatedPost);
@@ -189,6 +218,7 @@ export const updatePost = async (req, res) => {
         res.status(500).json({ message: "Failed to update post" });
     }
 };
+
 
 
 export const deletePost = async (req, res) => {
