@@ -13,7 +13,7 @@ const port = process.env.PORT || 8800;
 const app = express();
 
 const corsOptions = {
-    origin: "https://https://urban-estate-n4pv3vuv9-srijitabaksis-projects.vercel.app", 
+    origin: "https://urban-estate-n4pv3vuv9-srijitabaksis-projects.vercel.app", 
     credentials: true,
 };
 
