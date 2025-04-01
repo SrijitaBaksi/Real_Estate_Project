@@ -11,7 +11,7 @@ export const SocketContextProvider = ({children}) =>{
     
 
     useEffect(()=>{
-        setSocket(io("http://localhost:4000"))
+        setSocket(io("https://urban-estate-project-socket.onrender.com"))
     },[])
 
     useEffect(()=>{

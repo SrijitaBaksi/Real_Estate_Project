@@ -1,8 +1,9 @@
 import axios from "axios"
 
 const apiRequest = axios.create({
-    baseURL: "http://localhost:8800/api",
-    withCredentials:true
+    baseURL: "https://urban-estate-project-backend.onrender.com/api",
+    withCredentials: true
 });
+
 
 export default apiRequest;
