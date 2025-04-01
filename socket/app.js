@@ -1,10 +1,11 @@
 import {Server} from "socket.io"
 
-const io= new Server({
-    cors:{
-        origin:"http://localhost:5173",
+
+const io = new Server({
+    cors: {
+        origin: "https://urban-estate-25uszjavq-srijitabaksis-projects.vercel.app", // Vercel frontend URL
     }
-})
+});
 
 let onlineUser=[]
 
