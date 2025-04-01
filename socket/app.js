@@ -3,7 +3,7 @@ import {Server} from "socket.io"
 
 const io = new Server({
     cors: {
-        origin: "https://urban-estate-25uszjavq-srijitabaksis-projects.vercel.app", // Vercel frontend URL
+        origin: "https://https://urban-estate-n4pv3vuv9-srijitabaksis-projects.vercel.app/", // Vercel frontend URL
     }
 });
 
