@@ -12,10 +12,12 @@ import prisma from "./lib/prisma.js";
 const port = process.env.PORT || 8800;
 const app = express();
 
-app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-    credentials: true
-}));
+const corsOptions = {
+    origin: "https://urban-estate-25uszjavq-srijitabaksis-projects.vercel.app", 
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
