@@ -31,54 +31,53 @@ export const register = async (req,res)=>{
     }
 }
 
-export const login = async (req,res)=>{
-    const {username,password} = req.body
-    try{
-    //check if the user exits
-        const user= await prisma.user.findUnique({
-            where:{username}
-        })
+export const login = async (req, res) => {
+    const { username, password } = req.body;
 
-        if(!user) return res.status(401).json({message:"Invalid Credentials!"})
+    try {
+        // Check if the user exists
+        const user = await prisma.user.findUnique({
+            where: { username }
+        });
 
-        //check if the password is correct 
+        if (!user) return res.status(401).json({ message: "Invalid Credentials!" });
 
-        const isPasswordValid = await bcrypt.compare(password,user.password)
+        // Check if the password is correct
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) return res.status(401).json({ message: "Invalid Credentials!" });
 
-        if(!isPasswordValid) return res.status(401).json({message:"Invalid Credentials!"})
-
-        //generate cookie token and send to the user
-
-        // res.setHeader("Set-Cookie","test=" + "myValue").json("success")
-        const age = 1000*60*60*24*7 //calculation of age of 7 days or 1 week time for cookie to expire
-
-        const token= jwt.sign(
-            {
-            id:user.id,
-            isAdmin:false
-            },
+        // Generate JWT token
+        const age = 1000 * 60 * 60 * 24 * 7; // 7 days
+        const token = jwt.sign(
+            { id: user.id, isAdmin: false },
             process.env.JWT_SECRET_KEY,
-            {expiresIn: age}
-       )
+            { expiresIn: "7d" }
+        );
 
-       const {password:userPassword,...userInfo } = user;
+        // Remove password before sending user info
+        const { password: userPassword, ...userInfo } = user;
 
+        // Set cookie with JWT token
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: age,
+            sameSite: "None"
+        });
 
+        // Send user info + token in response
+        res.status(200).json({
+            message: "Login successful",
+            token,   // Token for localStorage
+            user: userInfo
+        });
 
-
-        res.cookie("token",token,{
-            httpOnly:true,
-            secure:process.env.NODE_ENV === "production",
-            maxAge:age,
-
-        }).status(200).json(userInfo)
-
-
-    }catch(err){
-        console.log(err)
-        res.status(500).json({message:"failed to login"})
+    } catch (err) {
+        console.error("Login Error:", err);
+        res.status(500).json({ message: "Failed to login" });
     }
-}
+};
+
 
 export const logout =(req,res)=>{
     res.clearCookie("token").status(200).json({message:"Logout Successful"})

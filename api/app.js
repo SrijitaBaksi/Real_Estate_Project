@@ -12,9 +12,20 @@ import prisma from "./lib/prisma.js";
 const port = process.env.PORT || 8800;
 const app = express();
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://urban-estate-psi.vercel.app"
+];
+
 const corsOptions = {
-    origin: "https://urban-estate-psi.vercel.app", 
-    credentials: true,
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true, // 
 };
 
 app.use(cors(corsOptions));
