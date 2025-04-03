@@ -3,6 +3,10 @@
 🚀 **MERN Stack | Prisma | Zustand | Socket.io | Leaflet.js**  
 
 ---
+![Alt Text](client/public/first.png)
+
+![Alt Text](client/public/second.png)
+
 
 ## **🌟 About the Project**  
 **UrbanEstate** is finally here! 🎉 This **feature-packed real estate platform** makes property buying, selling, and chatting seamless and efficient. Whether you're a **buyer or a seller**, this app has everything you need – from **real-time chat** to **map-based property search**!  
